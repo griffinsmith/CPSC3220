@@ -100,7 +100,7 @@ if rank != 0:
 
 
 		# MISSING IPC CALL  # from server for reply
-		comm.Recv(reply, rank)
+		comm.Recv(reply, source=0)
 
 		print( 'client '+ str(rank) + ' received acknowledgement' )
 
