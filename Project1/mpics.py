@@ -150,6 +150,6 @@ else:
 			num_clients -= 1
 
 		# MISSING IPC CALL  # reply back to that client
-	comm.Send(acknowledgement, dest=service_request[0])
+	comm.Send(acknowledgement, dest=1)
 
 	print( 'server done with final sum of ' + str(sum) )
