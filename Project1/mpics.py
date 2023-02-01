@@ -96,7 +96,7 @@ if rank != 0:
 		request[1] = i * rank
 
 		# MISSING IPC CALL  # to server with update request
-		comm.Send(request, request[0])
+		comm.Send(request, dest=0)
 
 
 		# MISSING IPC CALL  # from server for reply
