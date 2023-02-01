@@ -100,7 +100,7 @@ if rank != 0:
 
 
 		# MISSING IPC CALL  # from server for reply
-		comm.Recv(reply, source=0)
+		comm.Recv(reply, 0)
 
 		print( 'client '+ str(rank) + ' received acknowledgement' )
 
@@ -108,10 +108,10 @@ if rank != 0:
 	request[1] = 0
 
 	# MISSING IPC CALL  # to server with completion notice
-	comm.Send(request, request[0])
+	comm.Send(request, 0)
 
 	# MISSING IPC CALL  # from server for reply
-	comm.Recv(reply, rank)
+	comm.Recv(reply, 0)
 
 	print( 'client ' + str(rank) + ' done' )
 
@@ -132,7 +132,7 @@ else:
 	while num_clients > 0:
 
 		# MISSING IPC CALL  # from any client
-		comm.Recv(service_request,source=MPI.ANY_SOURCE)
+		comm.Recv(service_request, source=MPI.ANY_SOURCE)
 
 
 		if service_request[1] != 0:
@@ -150,6 +150,6 @@ else:
 			num_clients -= 1
 
 		# MISSING IPC CALL  # reply back to that client
-	comm.Send(acknowledgement, dest=1)
+	comm.Send(acknowledgement, service_request[0])
 
 	print( 'server done with final sum of ' + str(sum) )
